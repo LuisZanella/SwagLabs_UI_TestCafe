@@ -4,7 +4,9 @@
   "description": "This is an UI automation challenge",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "report": "ts-node ./src/reporting/report-generator.ts",
+    "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=src/reporting/json",
+    "test": "testcafe chrome test/**/*.spec.ts --env=local --user=user1@example.com  --selector-timeout 10000 -S -s screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,9 @@
   },
   "homepage": "https://github.com/LuisZanella/SwagLabs_UI_TestCafe#readme",
   "dependencies": {
-    "testcafe": "^1.16.1"
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "testcafe": "^1.16.1",
+    "testcafe-reporter-cucumber-json": "^6.3.0",
+    "ts-node": "^10.4.0"
   }
 }
