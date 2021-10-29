@@ -1,0 +1,26 @@
+{
+  "name": "qa_automation_swaglabs",
+  "version": "1.0.0",
+  "description": "This is an UI automation challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisZanella/SwagLabs_UI_TestCafe.git"
+  },
+  "keywords": [
+    "TestCafe",
+    "UI"
+  ],
+  "author": "Luis Zanella",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuisZanella/SwagLabs_UI_TestCafe/issues"
+  },
+  "homepage": "https://github.com/LuisZanella/SwagLabs_UI_TestCafe#readme",
+  "dependencies": {
+    "testcafe": "^1.16.1"
+  }
+}
