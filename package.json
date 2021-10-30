@@ -6,7 +6,7 @@
   "scripts": {
     "report": "ts-node ./src/reporting/report-generator.ts",
     "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=src/reporting/json",
-    "test": "testcafe chrome test/**/*.spec.ts --env=local --user=user1@example.com  --selector-timeout 10000 -S -s screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost"
+    "test": "testcafe chrome src/test/**/*.spec.ts --env=local --user=user1@example.com  --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost"
   },
   "repository": {
     "type": "git",

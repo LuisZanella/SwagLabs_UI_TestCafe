@@ -1,5 +1,8 @@
 /node_modules
 /src/reporting/json/*.json
-/reports
-
+/reports/assets
+/reports/features
+/reports/*.html
+/reports/screenshots/*
+!/reports/screenshots/.gitkeep
 testcafe-reporter-cucumber-json.json
