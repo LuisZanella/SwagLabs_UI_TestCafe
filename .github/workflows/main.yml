@@ -1,0 +1,26 @@
+name: Automation_SwagLabs
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+     - name: Testing Eslint
+       run: npm install && npm run lint
+#    - uses: actions/checkout@v2
+#    - name: Configure AWS Credentials
+#      uses: aws-actions/configure-aws-credentials@v1
+#      with:
+#        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#        aws-region: ${{ secrets.AWS_REGION }}
+#    - name: Building Hi Zane
+#      env:
+#       CI: false
+#      run: npm install && npm audit fix && npm run build:production
+#    - name: Deploy Hi Zane build to S3 bucket
+#      run: aws s3 sync ./build/ s3://hizane-frontend --delete
