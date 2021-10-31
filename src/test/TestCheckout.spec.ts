@@ -2,6 +2,8 @@
 import { getClientLocation } from '../Utils/Utils.spec'
 import { Login, Inventory, Cart, Checkout } from "../pages/Index.spec";
 import { multipleObjectAssertion } from '../support/Assertion.spec'
+import { UserTestData } from '../testData/Index.spec';
+import { User } from '../models/Index.spec';
 
 fixture `Swag_Labs CheckOut Tests`
     .page `https://www.saucedemo.com/`;
@@ -15,24 +17,31 @@ fixture `Swag_Labs CheckOut Tests`
  * the user can go to the checkout complete page.
  * 
  */
- test('User can checkout the order', async ctx => {
-    await Login.userLogIn(ctx, 'standard_user', 'secret_sauce');
-
-    const itemsCount = await Inventory.getItemsCount();
-    const items = await Inventory.addItemsToCart(ctx);
-    await ctx.expect(itemsCount).eql(items.length, `Items found: ${JSON.stringify(items)}`);
-
-    await Inventory.clickShoppingCart(ctx);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/cart.html', { timeout: 10000 });
-    const cartItems = await Cart.getCartItems(ctx);
-    await multipleObjectAssertion(ctx, items, cartItems);
-
-    await Cart.clickBtnCheckOut(ctx);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-step-one.html', { timeout: 10000 });
-    await Checkout.fillCheckOutInformation(ctx);
-    await Checkout.clickBtnContinue(ctx);
-    
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-step-two.html', { timeout: 10000 });
-    await Checkout.clickBtnFinnish(ctx);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-complete.html', { timeout: 10000 });
+ UserTestData.forEach((user: User) => {
+    test('User can checkout the order', async ctx => {
+        // Step 1
+        await Login.userLogIn(ctx, user.userName, user.password);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', `UserName: ${user.userName}` ,{ timeout: 10000 });
+        // Step 2 and 3
+        const itemsCount = await Inventory.getItemsCount();
+        const items = await Inventory.addItemsToCart(ctx);
+        await ctx.expect(itemsCount).eql(items.length, `Items found: ${JSON.stringify(items)}`);
+        // Step 4
+        await Inventory.clickShoppingCart(ctx);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/cart.html', { timeout: 10000 });
+        // Step 5
+        const cartItems = await Cart.getCartItems(ctx);
+        await multipleObjectAssertion(ctx, items, cartItems);
+        // Step 6
+        await Cart.clickBtnCheckOut(ctx);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-step-one.html', { timeout: 10000 });
+        // Step 7
+        await Checkout.fillCheckOutInformation(ctx);
+        // Step 8
+        await Checkout.clickBtnContinue(ctx);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-step-two.html', { timeout: 10000 });
+        // Step 9
+        await Checkout.clickBtnFinnish(ctx);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/checkout-complete.html', { timeout: 10000 });
+    });
 });

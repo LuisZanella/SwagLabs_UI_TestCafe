@@ -1,3 +1,3 @@
-import { multipleObjectAssertion } from "./Assertion.spec";
+import { multipleObjectAssertion, isNextItemHigherAssertion } from "./Assertion.spec";
 
-export { multipleObjectAssertion };
+export { multipleObjectAssertion, isNextItemHigherAssertion };

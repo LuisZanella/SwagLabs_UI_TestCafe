@@ -1,5 +1,7 @@
 import { getClientLocation } from '../Utils/Utils.spec'
 import { Login } from "../pages/Index.spec";
+import { User } from "../models/Index.spec"
+import { UserTestData, InvalidUsersTestData } from '../testData/Index.spec';
 
 fixture `Swag_Labs LogIn Tests`
     .page `https://www.saucedemo.com/`;
@@ -13,12 +15,14 @@ fixture `Swag_Labs LogIn Tests`
  * if the login works with valid user credentials.
  * 
  */
+ UserTestData.forEach((user: User) => {
     test('Login with valid credentials', async ctx => {
-    
-        await Login.userLogIn(ctx, 'standard_user', 'secret_sauce');
-
-        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', { timeout: 10000 });
+        //Step 1
+        await Login.userLogIn(ctx, user.userName, user.password);
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', `UserName: ${user.userName}` ,{ timeout: 10000 });
     });
+ });
+    
 
 
 /**
@@ -31,11 +35,12 @@ fixture `Swag_Labs LogIn Tests`
  * 
  * 
  */
+ InvalidUsersTestData.forEach((user: User) => {
     test('Login with invalid credentials', async ctx => {
-        await Login.userLogIn(ctx, 'admin', 'admin');
-
-        await ctx.expect(await Login.hasLogInErrorMessage()).eql(true);
+        //Step 1
+        await Login.userLogIn(ctx, user.userName, user.password);
+        await ctx.expect(await Login.hasLogInErrorMessage()).eql(true, `UserName: ${user.userName}`);
     });
-
+ })
 
 
