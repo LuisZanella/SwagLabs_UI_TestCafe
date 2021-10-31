@@ -2,7 +2,7 @@
 /src/reporting/json/*.json
 /reports/assets
 /reports/features
-/reports/*.html
+/reports/*
 /reports/screenshots/*
 !/reports/screenshots/.gitkeep
 testcafe-reporter-cucumber-json.json
