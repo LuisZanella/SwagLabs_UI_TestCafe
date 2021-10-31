@@ -1,6 +1,4 @@
-import { User } from "../models/Index.spec";
+import * as UserTestData from './UsersTestData.json';
 import { InvalidUsersTestData } from "../testData/InvalidUserTestData.spec";
-
-const UserTestData:User[] = require ('./UsersTestData.json');
 
 export { UserTestData, InvalidUsersTestData };

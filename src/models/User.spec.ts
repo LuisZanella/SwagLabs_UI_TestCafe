@@ -1,4 +1,6 @@
-export default interface User {
+interface User {
     userName: string;
     password: string;
 }
+
+export default User;

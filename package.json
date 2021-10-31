@@ -6,7 +6,9 @@
   "scripts": {
     "report": "ts-node ./src/reporting/report-generator.ts",
     "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=src/reporting/json",
-    "test": "testcafe chrome src/test/**/*.spec.ts --env=local --user=user1@example.com  --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost"
+    "test": "testcafe chrome src/test/**/*.spec.ts --env=local --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost",
+    "lint": "eslint . --ext .ts,.spec.ts",
+    "lint:fix": "eslint . --ext .ts,.spec.ts --fix"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,15 @@
     "testcafe": "^1.16.1",
     "testcafe-reporter-cucumber-json": "^6.3.0",
     "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/prettier": "^2.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "eslint": "^8.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-testcafe": "^0.2.1",
+    "prettier": "^2.4.1"
   }
 }

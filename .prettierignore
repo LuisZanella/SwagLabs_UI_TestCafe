@@ -1,0 +1,5 @@
+build
+package
+reports
+node_modules
+.git
