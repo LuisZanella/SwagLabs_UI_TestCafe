@@ -1,11 +1,12 @@
 export const multipleObjectAssertion = async (ctx: TestController, expectedItems: unknown[], receivedItems:unknown[] ) => {
   for (let i = 0; i < expectedItems.length; i++) {
     const objectKeys = Object.keys(expectedItems[i]);
-    objectKeys.forEach(async (el) => {
-      const expectedElement = expectedItems[i][el];
-      const currentElement = receivedItems[i][el];
+    for (let i = 0; i < objectKeys.length; i++) {
+      const expectedElement = expectedItems[i][objectKeys[i]];
+      const currentElement = receivedItems[i][objectKeys[i]];
       await ctx.expect(expectedElement).eql(currentElement, `Expected element: ${expectedElement} and we received: ${currentElement}`);
-    });
+      
+    }
   }
 };
 

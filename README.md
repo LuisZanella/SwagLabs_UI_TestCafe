@@ -1,8 +1,8 @@
 # Swag Labs UI Automation
-
+If for any reason the testing gets stopt on the browser screen please refresh it using ctrl + f5
 ## Clone the repository
 ```
-git clone "https://github.com/LuisZanella/SwagLabs_UI_TestCafe" "(your folder name)"
+git clone "https://github.com/LuisZanella/SwagLabs_UI_TestCafe" "(your_folder_name)"
 ```
 ## How to run it
 First you need to be sure to download all the node js dependencies:
