@@ -1,7 +1,6 @@
 import ConstantData from '../support/ConstantData.spec';
 import { getClientLocation } from '../Utils/Utils.spec';
 
-
 fixture `Swag_Labs Unit Test`
   .page `${process.env.ENV_URL}`;
 
