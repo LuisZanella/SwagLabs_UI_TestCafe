@@ -1,7 +1,9 @@
+import ConstantData from '../support/ConstantData.spec';
 import { getClientLocation } from '../Utils/Utils.spec';
 
+
 fixture `Swag_Labs Unit Test`
-  .page `https://www.saucedemo.com/`;
+  .page `${process.env.ENV_URL}`;
 
 /**
  * 
@@ -13,6 +15,6 @@ fixture `Swag_Labs Unit Test`
  */
 test('Page location', async ctx => {
   await ctx
-    .expect(getClientLocation()).eql('https://www.saucedemo.com/');
+    .expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`);
 });
     

@@ -1,11 +1,11 @@
 import { getClientLocation } from '../Utils/Utils.spec';
 import { Login, Inventory } from "../pages/Index.spec";
-import { isNextItemHigherAssertion } from '../support/Index.spec';
+import { ConstantData, isNextItemHigherAssertion } from '../support/Index.spec';
 import { UserTestData } from '../testData/Index.spec';
 import { User } from '../models/Index.spec';
 
 fixture `Swag_Labs Inventory Tests`
-  .page `https://www.saucedemo.com/`;
+  .page `${process.env.ENV_URL}`;
 
 /**
  * - Swag_Labs_LogOut_P0
@@ -20,10 +20,10 @@ UserTestData.forEach((user: User) => {
   test('User logout', async ctx => {
     // Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', `UserName: ${user.userName}` ,{ timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}` ,{ timeout: 10000 });
     // Step 2
     await Inventory.userLogOut(ctx);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/', { timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`, { timeout: 10000 });
   });
 });
 
@@ -40,7 +40,7 @@ UserTestData.forEach((user: User) => {
   test('Product filter by low to high Price', async ctx => {
     // Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', `UserName: ${user.userName}` ,{ timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}` ,{ timeout: 10000 });
     //Step 2
     await Inventory.filterLowToHighPrice(ctx);
     const items = await Inventory.getOrAddItemsInList(ctx, false);

@@ -51,6 +51,10 @@ npm i @types/faker
 ```
 npm i faker
 ```
+- dotEnv
+```
+npm i dotenv
+```
 - Eslint (--dev Env)
 ```
 npm install @typescript-eslint/eslint-plugin@latest --save-dev

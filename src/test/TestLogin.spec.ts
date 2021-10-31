@@ -2,9 +2,10 @@ import { getClientLocation } from '../Utils/Utils.spec';
 import { Login } from "../pages/Index.spec";
 import { User } from "../models/Index.spec";
 import { UserTestData, InvalidUsersTestData } from '../testData/Index.spec';
+import ConstantData from '../support/ConstantData.spec';
 
 fixture `Swag_Labs LogIn Tests`
-  .page `https://www.saucedemo.com/`;
+  .page `${process.env.ENV_URL}`;
 
 /**
  * - Swag_Labs_Login_P0
@@ -19,7 +20,7 @@ UserTestData.forEach((user: User) => {
   test('Login with valid credentials', async ctx => {
     //Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
-    await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', `UserName: ${user.userName}` ,{ timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}` ,{ timeout: 10000 });
   });
 });
 
@@ -38,6 +39,7 @@ InvalidUsersTestData.forEach((user: User) => {
     //Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx.expect(await Login.hasLogInErrorMessage()).eql(true, `UserName: ${user.userName}`);
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`, `UserName: ${user.userName}` ,{ timeout: 10000 });
   });
 });
 
