@@ -1,26 +1,28 @@
 import { Selector } from 'testcafe';
 
-export class LogInPage {
-    private _userName: Selector;
-    private _password: Selector;
+class LogInPage {
+    private _txtUserName: Selector;
+    private _txtPassword: Selector;
     private _btnLogin: Selector;
     private _errorMessage: Selector;
 
     constructor() {
-        this._userName = Selector('#user-name');
-        this._password = Selector('#password');
+        this._txtUserName = Selector('#user-name');
+        this._txtPassword = Selector('#password');
         this._btnLogin = Selector('#login-button');
         this._errorMessage = Selector('div.error-message-container.error');
     }
 
     public async userLogIn(ctx: TestController, userName: string, password: string) : Promise<void> {
-        await ctx.typeText(this._userName, userName)
-                .typeText(this._password, password)
-                .click(this._btnLogin);
+        await ctx.typeText(this._txtUserName, userName);
+        await ctx.typeText(this._txtPassword, password)
+        await ctx.click(this._btnLogin);
     }
 
-    public hasLogInError() {
-        return this._errorMessage.hasChildElements;
+    public async hasLogInErrorMessage() {
+        return await this._errorMessage.hasChildElements;
     }
 
 }
+
+export default new LogInPage();

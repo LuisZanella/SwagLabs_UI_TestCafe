@@ -1,9 +1,8 @@
 import { getClientLocation } from '../Utils/Utils.spec'
-import { Login } from "../pages/Index";
+import { Login } from "../pages/Index.spec";
 
-fixture `Swag_Labs Login Tests`
+fixture `Swag_Labs LogIn Tests`
     .page `https://www.saucedemo.com/`;
-
 
 /**
  * - Swag_Labs_Login_P0
@@ -14,12 +13,12 @@ fixture `Swag_Labs Login Tests`
  * if the login works with valid user credentials.
  * 
  */
+    test('Login with valid credentials', async ctx => {
+    
+        await Login.userLogIn(ctx, 'standard_user', 'secret_sauce');
 
- test('Login with valid credentials', async ctx => {
-    const login = new Login();
-    await login.userLogIn(ctx, 'standard_user', 'secret_sauce')
-    await ctx.expect(getClientLocation()).contains('https://www.saucedemo.com/inventory.html');
-});
+        await ctx.expect(getClientLocation()).eql('https://www.saucedemo.com/inventory.html', { timeout: 10000 });
+    });
 
 
 /**
@@ -32,11 +31,10 @@ fixture `Swag_Labs Login Tests`
  * 
  * 
  */
-
     test('Login with invalid credentials', async ctx => {
-        const login = new Login();
-        await login.userLogIn(ctx, 'admin', 'admin')
-        await ctx.expect(login.hasLogInError()).eql(true);
+        await Login.userLogIn(ctx, 'admin', 'admin');
+
+        await ctx.expect(await Login.hasLogInErrorMessage()).eql(true);
     });
 
 
