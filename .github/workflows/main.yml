@@ -10,12 +10,15 @@ jobs:
     timeout-minutes: 5
     steps:
     - uses: actions/checkout@v2
-    - name: Testing Eslint
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2.4.1
       with:
-        node-version: '14'
-     - run: npm install
-     - run: npm run lint
+        node-version: '14.4.x'
+
+    - name: Install NPM dependencies
+      run: npm install
+    
+    - name: Run Eslint test
+      run: npm run lint
 #    - uses: actions/checkout@v2
 #    - name: Configure AWS Credentials
 #      uses: aws-actions/configure-aws-credentials@v1
