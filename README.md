@@ -57,17 +57,10 @@ npm i dotenv
 ```
 - Eslint (--dev Env)
 ```
-npm install @typescript-eslint/eslint-plugin@latest --save-dev
-```
-```
 npm i eslint --save-dev
 ```
-- Pritter
 ```
-npm i prettier --save-dev
-```
-```
-npm i @types/prettier --save-dev
+npm install @typescript-eslint/eslint-plugin@latest --save-dev
 ```
 ```
 npm install eslint-plugin-prettier@latest --save-dev
@@ -80,4 +73,11 @@ npm install eslint-plugin-testcafe@latest --save-dev
 ```
 ```
 npm i @typescript-eslint/parser --save-dev
+```
+- Pritter
+```
+npm i prettier --save-dev
+```
+```
+npm i @types/prettier --save-dev
 ```
