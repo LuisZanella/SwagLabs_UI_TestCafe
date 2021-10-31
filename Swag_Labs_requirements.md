@@ -13,7 +13,7 @@
 ----
 - Sort products by Price (low to high)
 > Expected: Validate the products have been sorted by price correctly
-### Shopping Car Requierments
+### Shopping Cart Requierments
 ----
 - Add multiple items to the shopping cart
 > Expected: Validate all the items that have been added to the shopping cart.

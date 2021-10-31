@@ -46,27 +46,29 @@ Steps | Action | Expected Result | Notes | Result |
 Steps | Action | Expected Result | Notes | Result |
 ----- | ------ | --------------- | ------| ------ | 
 1 | Basic auth: <ul><li>Valid User</li></ul>Input data: <ul><li>User: standard_user \|\| locked_out_user \|\| problem_user \|\| performance_glitch_user</li><li>Password: secret_sauce</li></ul>POST -/Login| Status Code: 200| - ||
-2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: {addRandomItem} </li></ul>PUT -/inventory/shoppingCar| Status Code: 200| Verify that the shoping cart add an item ||
+2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: {addRandomItem} </li></ul>PUT -/inventory/shoppingCart| Status Code: 200| Verify that the shoping cart add an item ||
 
 
 
 - Swag_Labs_ShoppingCart_p1
-> This is a positive test case to validate that the added items from the list are added to shopping cart.
+> This is a positive test case to validate that the ‘Sauce Labs Onesie’ item from the list can be added to the shopping cart.
 
 Steps | Action | Expected Result | Notes | Result |
 ----- | ------ | --------------- | ------| ------ | 
 1 | Basic auth: <ul><li>Valid User</li></ul>Input data: <ul><li>User: standard_user \|\| locked_out_user \|\| problem_user \|\| performance_glitch_user</li><li>Password: secret_sauce</li></ul>POST -/Login| Status Code: 200| - ||
-2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: ‘Sauce Labs Onesie’ </li></ul>PUT -/inventory/shoppingCar| Status Code: 200|  ||
-3 | Input data: <ul><li>Token: {User_Token} </li></ul>GET -/inventory/shoppingCar| Status Code: 200| Verify that the product ‘Sauce Labs Onesie’ has been added to the list ||
+2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: ‘Sauce Labs Onesie’ </li></ul>PUT -/inventory/shoppingCart| Status Code: 200|  ||
+3 | Input data: <ul><li>Token: {User_Token} </li></ul>GET -/inventory/shoppingCart| Status Code: 200| Verify that the product ‘Sauce Labs Onesie’ has been added to the list ||
 
-- Swag_Labs_ShoppingCart_p1
-> This is a positive test case to validate that the added items from the list are added to shopping cart.
+### CheckOut Test Cases
+----
+- Swag_Labs_CheckOut_p0
+> This is a positive test case to validate the user can go to the checkout complete page.
 
 Steps | Action | Expected Result | Notes | Result |
 ----- | ------ | --------------- | ------| ------ | 
 1 | Basic auth: <ul><li>Valid User</li></ul>Input data: <ul><li>User: standard_user \|\| locked_out_user \|\| problem_user \|\| performance_glitch_user</li><li>Password: secret_sauce</li></ul>POST -/Login| Status Code: 200| - ||
-2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: {Random_Item} </li></ul>PUT -/inventory/shoppingCar| Status Code: 200|  ||
-3 | Input data: <ul><li>Token: {User_Token} </li></ul>GET -/inventory/shoppingCar| Status Code: 200|  ||
+2 | Input data: <ul><li>Token: {User_Token} </li><li>Item: {Random_Item} </li></ul>PUT -/inventory/shoppingCart| Status Code: 200|  ||
+3 | Input data: <ul><li>Token: {User_Token} </li></ul>GET -/inventory/shoppingCart| Status Code: 200|  ||
 4 | Input data: <ul><li>Token: {User_Token} </li></ul>GET -/inventory/purchase | Status Code: 200|  ||
 5 | User checkouts and gets redirect to "checkout-step-one"| |  ||
 6 | Input data: <ul><li>Token: {User_Token} </li><li>First Name: {Random_FirstName} </li><li>Last Name: {Random_LastName} </li><li>ZIP Code: {Random_ZipCode} </li></ul>POST -/inventory/userInformation| Status Code: 200|  ||
