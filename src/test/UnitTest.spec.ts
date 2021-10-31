@@ -1,31 +1,20 @@
-import { Selector } from 'testcafe';
+import { getClientLocation } from '../Utils/Utils.spec'
 
 fixture `Swag_Labs Unit Test`
-    .page `http://devexpress.github.io/testcafe/example`;
+    .page `https://www.saucedemo.com/`;
 
-    test('My first test', async t => {
-        await t
-            .typeText('#developer-name', 'John Smith')
-            .click('#submit-button');
+/**
+ * 
+ *  @param   ctx   test case context
+ * 
+ * This is an unit test to see if
+ * we can go to the main LogIn page
+ * 
+ */
+    test('Page location', async ctx => {
+        await ctx
+            .expect(getClientLocation()).eql('https://www.saucedemo.com/');
     });
 
 
-    test('My second test', async t => {
-        await t
-            .typeText('#developer-name', 'John Smith')
-            .click('#submit-button');
     
-        const articleHeader = await Selector('.result-content').find('h1');
-    
-        // Obtain the text of the article header
-        let headerText = await articleHeader.innerText;
-    });
-
-    test('My third test', async t => {
-        await t
-            .typeText('#developer-name', 'John Smith')
-            .click('#submit-button')
-    
-            // Use the assertion to check if the actual header text is equal to the expected one
-            .expect(Selector('#article-header').innerText).eql('Thank you, John Smith!');
-    });
