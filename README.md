@@ -32,6 +32,10 @@ NOTE: You should keep ".json" files from your src/reporting/json
 
 This project has use the next npm dependencies:
 
+- TypeScript (Apache 2.0)
+```
+npm i typescript
+```
 - ts-node (MIT License)
 ```
 npm i ts-node
@@ -73,6 +77,9 @@ npm install eslint-plugin-testcafe@latest --save-dev
 ```
 ```
 npm i @typescript-eslint/parser --save-dev
+```
+```
+npm i @typescript-eslint/eslint-plugin --save-dev
 ```
 - Pritter
 ```
