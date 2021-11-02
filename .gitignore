@@ -1,5 +1,5 @@
 /node_modules
-/src/reporting/json/*.json
+/tests/helpers/reporting/json/*.json
 /reports/assets
 /reports/features
 /reports/*

@@ -4,9 +4,9 @@
   "description": "This is an UI automation challenge",
   "main": "index.js",
   "scripts": {
-    "report": "ts-node ./src/reporting/report-generator.ts",
-    "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=src/reporting/json",
-    "test": "testcafe chrome config/testEnv.spec.ts src/test/**/*.spec.ts --env=local --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost",
+    "report": "ts-node ./tests/helpers/reporting/report-generator.ts",
+    "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=tests/helpers/reporting/json",
+    "test": "testcafe chrome config/testEnv.spec.ts tests/test_Cases/**/*.spec.ts --ts-config-path \"tsconfig.json\" --env=local --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost",
     "lint": "eslint . --ext .ts,.spec.ts",
     "lint:fix": "eslint . --ext .ts,.spec.ts --fix"
   },
@@ -27,11 +27,13 @@
   "dependencies": {
     "@types/faker": "^5.5.9",
     "dotenv": "^10.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "faker": "^5.5.3",
     "multiple-cucumber-html-reporter": "^1.18.0",
     "testcafe": "^1.16.1",
     "testcafe-reporter-cucumber-json": "^6.3.0",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.11.0"
   },
   "devDependencies": {
     "@types/prettier": "^2.4.1",

@@ -81,3 +81,11 @@ npm i prettier --save-dev
 ```
 npm i @types/prettier --save-dev
 ```
+- tsconfig-paths (MIT)
+```
+npm i tsconfig-paths
+```
+- eslint-import-resolver-alias
+```
+npm i eslint-import-resolver-alias
+```

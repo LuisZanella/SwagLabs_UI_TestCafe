@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "lib",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "sourceRoot": "/",
+    "baseUrl": "./",
+    "paths": {
+      "@tests/*": ["tests/test_Cases/*"],
+      "@roles/*": ["tests/roles/*"],
+      "@helpers/*": ["tests/helpers/*"],
+      "@data/*": ["tests/data/*"],
+      "@pageModels/*": ["tests/pages_model/*"],
+      "@config/*": ["config/*"]
+    },
+    "types": [
+      "node"
+    ]
+  },
+  "include": ["./**/*.ts"],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".webpack/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*",
+    "test/**/*"
+  ]
+}
