@@ -16,17 +16,40 @@ class CheckoutPage {
     this._btnFinish = Selector('#finish');
   }
 
-  public async fillCheckOutInformation(ctx: TestController) {
+  /**
+   *
+   * @param ctx             test case context
+   *
+   * Method to click the continue btn and continue
+   * with order steps
+   *
+   */
+  public async fillCheckOutInformation(ctx: TestController): Promise<void> {
     await ctx.typeText(this._txtFirstName, faker.name.firstName());
     await ctx.typeText(this._txtLastName, faker.name.lastName());
     await ctx.typeText(this._txtZipCode, faker.address.zipCode());
   }
 
-  public async clickBtnContinue(ctx: TestController) {
+  /**
+   *
+   * @param ctx             test case context
+   *
+   * Method to click the continue btn continue
+   * with order steps
+   *
+   */
+  public async clickBtnContinue(ctx: TestController): Promise<void> {
     await ctx.click(this._btnContinue);
   }
 
-  public async clickBtnFinnish(ctx: TestController) {
+  /**
+   *
+   * @param ctx             test case context
+   *
+   * Method to click the finish btn and end the order
+   *
+   */
+  public async clickBtnFinnish(ctx: TestController): Promise<void> {
     await ctx.click(this._btnFinish);
   }
 }

@@ -13,13 +13,27 @@ class LogInPage {
     this._errorMessage = Selector('div.error-message-container.error');
   }
 
+  /**
+   *
+   * @param ctx             test case context
+   * @param userName        name of the user that will logIn
+   * @param password        password of the user name
+   *
+   * Method to click the shopping Cart
+   *
+   */
   public async userLogIn(ctx: TestController, userName: string, password: string): Promise<void> {
     await ctx.typeText(this._txtUserName, userName);
     await ctx.typeText(this._txtPassword, password);
     await ctx.click(this._btnLogin);
   }
 
-  public async hasLogInErrorMessage() {
+  /**
+   *
+   * Method to see if the LogInErrorMessage appers
+   *
+   */
+  public async hasLogInErrorMessage(): Promise<boolean> {
     return await this._errorMessage.hasChildElements;
   }
 }

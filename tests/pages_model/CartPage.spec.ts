@@ -11,6 +11,13 @@ class CartPage {
     this._btnCheckout = Selector('#checkout');
   }
 
+  /**
+   *
+   * @param ctx             test case context
+   *
+   * Method to get current Items in the list of the cart
+   *
+   */
   public async getCartItems(ctx: TestController): Promise<Item[]> {
     const inventorySize = await this._itemsInCart.count;
 
@@ -36,7 +43,14 @@ class CartPage {
     return currentItems;
   }
 
-  public async clickBtnCheckOut(ctx: TestController) {
+  /**
+   *
+   * @param ctx             test case context
+   *
+   * Method to click the checkout btn
+   *
+   */
+  public async clickBtnCheckOut(ctx: TestController): Promise<void> {
     await ctx.click(this._btnCheckout);
   }
 }
