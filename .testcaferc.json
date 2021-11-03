@@ -8,7 +8,8 @@
   "skipUncaughtErrors": true,
   "hostname": "127.0.0.1",
   "assertionTimeout": 1500,
-  "concurrency": 2,
+  "retryTestPages": true,
+  "concurrency": 4,
   "userVariables": {
     "url": "https://www.saucedemo.com"
   }
