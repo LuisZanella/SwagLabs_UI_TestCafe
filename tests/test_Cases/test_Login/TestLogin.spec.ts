@@ -21,9 +21,7 @@ UserTestData.forEach((user: User) => {
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`, {
-        timeout: 10000,
-      });
+      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`);
   });
 });
 
@@ -44,8 +42,6 @@ InvalidUsersTestData.forEach((user: User) => {
     await ctx.expect(await Login.hasLogInErrorMessage()).eql(true, `UserName: ${user.userName}`);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`, `UserName: ${user.userName}`, {
-        timeout: 10000,
-      });
+      .eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`, `UserName: ${user.userName}`);
   });
 });

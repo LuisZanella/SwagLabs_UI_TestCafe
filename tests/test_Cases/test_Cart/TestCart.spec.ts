@@ -21,18 +21,14 @@ UserTestData.forEach((user: User) => {
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`, {
-        timeout: 10000,
-      });
+      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`);
     //Step 2
     const itemsCount = await Inventory.getItemsCount();
     const items = await Inventory.addItemsToCart(ctx);
     await ctx.expect(itemsCount).eql(items.length, `Items found: ${JSON.stringify(items)}`);
     //Step 3
     await Inventory.clickShoppingCart(ctx);
-    await ctx
-      .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`, { timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`);
     //Step 4
     const cartItems = await Cart.getCartItems(ctx);
     await multipleObjectAssertion(ctx, items, cartItems);
@@ -61,9 +57,7 @@ UserTestData.forEach((user: User) => {
     const item = await Inventory.addItemsToCart(ctx, ConstantData.shoppingSpecificItem);
     // Step 3
     await Inventory.clickShoppingCart(ctx);
-    await ctx
-      .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`, { timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`);
     // Step 4
     const cartItem = await Cart.getCartItems(ctx);
     await multipleObjectAssertion(ctx, item, cartItem);

@@ -26,21 +26,11 @@ export const isNextItemHigherAssertion = async (
   for (let i = 0; i < receivedItems.length - 1; i++) {
     const currentItem = receivedItems[i][searchKey];
     const nextItem = receivedItems[i + 1][searchKey];
-
-    if (currentItem > nextItem) {
-      await ctx
-        .expect(currentItem)
-        .lt(
-          nextItem,
-          `The ${searchKey} should be lower but insted we got ${currentItem} and the next item is ${nextItem}`
-        );
-    } else {
-      await ctx
-        .expect(currentItem)
-        .lt(
-          nextItem,
-          `The ${searchKey} is correct for what we got ${currentItem} and the next item ${nextItem}`
-        );
-    }
+    await ctx
+      .expect(currentItem)
+      .lte(
+        nextItem,
+        `The ${searchKey} should be lower but insted we got ${currentItem} and the next item is ${nextItem}`
+      );
   }
 };

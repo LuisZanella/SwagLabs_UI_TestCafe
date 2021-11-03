@@ -31,9 +31,7 @@ UserTestData.forEach((user: User) => {
     await ctx.expect(itemsCount).eql(items.length, `Items found: ${JSON.stringify(items)}`);
     // Step 4
     await Inventory.clickShoppingCart(ctx);
-    await ctx
-      .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`, { timeout: 10000 });
+    await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.cartPathURL}`);
     // Step 5
     const cartItems = await Cart.getCartItems(ctx);
     await multipleObjectAssertion(ctx, items, cartItems);
@@ -41,18 +39,18 @@ UserTestData.forEach((user: User) => {
     await Cart.clickBtnCheckOut(ctx);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.checkOut_Step1_PathURL}`, { timeout: 10000 });
+      .eql(`${process.env.ENV_URL}${ConstantData.checkOut_Step1_PathURL}`);
     // Step 7
     await Checkout.fillCheckOutInformation(ctx);
     // Step 8
     await Checkout.clickBtnContinue(ctx);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.checkOut_Step2_PathURL}`, { timeout: 10000 });
+      .eql(`${process.env.ENV_URL}${ConstantData.checkOut_Step2_PathURL}`);
     // Step 9
     await Checkout.clickBtnFinnish(ctx);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.checkOutCompletePathURL}`, { timeout: 10000 });
+      .eql(`${process.env.ENV_URL}${ConstantData.checkOutCompletePathURL}`);
   });
 });
