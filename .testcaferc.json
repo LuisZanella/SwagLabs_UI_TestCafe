@@ -1,0 +1,15 @@
+{
+  "disablePageCaching": true,
+  "screenshots": {
+    "takeOnFails": true,
+    "path": "reports/screenshots"
+  },
+  "skipJsErrors": true,
+  "skipUncaughtErrors": true,
+  "hostname": "127.0.0.1",
+  "assertionTimeout": 1500,
+  "concurrency": 2,
+  "userVariables": {
+    "url": "https://www.saucedemo.com"
+  }
+}

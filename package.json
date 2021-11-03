@@ -6,7 +6,7 @@
   "scripts": {
     "report": "ts-node ./tests/helpers/reporting/report-generator.ts",
     "test:json": "npm test -- --reporter cucumber-json --skip-js-errors --reporter-json-folder=tests/helpers/reporting/json",
-    "test": "testcafe chrome config/testEnv.spec.ts tests/test_Cases/**/*.spec.ts --ts-config-path \"tsconfig.json\" --env=local --selector-timeout 10000 -S -s reports/screenshots --skip-js-errors --skip-uncaught-errors --hostname localhost",
+    "test": "testcafe chrome config/testEnv.spec.ts tests/test_Cases/**/*.spec.ts --config-file .testcaferc.json --ts-config-path \"tsconfig.json\"",
     "lint": "eslint . --ext .ts,.spec.ts",
     "lint:fix": "eslint . --ext .ts,.spec.ts --fix"
   },

@@ -9,7 +9,6 @@
     "outDir": "lib",
     "allowJs": true,
     "esModuleInterop": true,
-    "sourceRoot": "/",
     "baseUrl": "./",
     "paths": {
       "@tests/*": ["tests/test_Cases/*"],
