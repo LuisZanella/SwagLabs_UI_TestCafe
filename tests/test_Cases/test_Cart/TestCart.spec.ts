@@ -12,11 +12,12 @@ fixture`Swag_Labs Cart Tests`.page`${process.env.ENV_URL}`;
  *  @param   ctx   test case context
  *
  * This is a positive test case to validate
- * that the items could be added to the shopping cart.
+ * that the items could be added to the shopping cart and
+ * are the same in the shopping cart.
  *
  */
 UserTestData.forEach((user: User) => {
-  test('Add items to the shopping car', async (ctx) => {
+  test('Add items to the shopping cart', async (ctx) => {
     //Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx
@@ -45,14 +46,12 @@ UserTestData.forEach((user: User) => {
  *
  */
 UserTestData.forEach((user: User) => {
-  test(`Add "${ConstantData.shoppingSpecificItem}" item to the shopping car`, async (ctx) => {
+  test(`Add "${ConstantData.shoppingSpecificItem}" item to the shopping cart`, async (ctx) => {
     // Step 1
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`, {
-        timeout: 10000,
-      });
+      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`);
     // Step 2
     const item = await Inventory.addItemsToCart(ctx, ConstantData.shoppingSpecificItem);
     // Step 3

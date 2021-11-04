@@ -29,6 +29,32 @@ class InventoryPage {
   /**
    *
    * @param ctx             test case context
+   * @param indexList       the index of the item in the list
+   * @param itemKeyName     the key name for the item
+   *
+   * Method to add an item to the Cart
+   *
+   */
+  private async addItemToCart(
+    ctx: TestController,
+    indexList: number,
+    itemKeyName: string
+  ): Promise<void> {
+    const btnAddItem = this._inventoryItems
+      .child(indexList)
+      .find(`[data-test="add-to-cart-${itemKeyName}"]`);
+    await ctx.scroll(btnAddItem, 'center');
+    await ctx.click(btnAddItem);
+    this.refreshInventoryItems();
+    const removeBtnExist = await this._inventoryItems
+      .child(indexList)
+      .find(`[data-test="remove-${itemKeyName}"]`).exists;
+    await ctx.expect(true).eql(removeBtnExist, 'New button should appear');
+  }
+
+  /**
+   *
+   * @param ctx             test case context
    *
    * Method to click the filter Low To High Price
    *
@@ -53,18 +79,17 @@ class InventoryPage {
     addSpecificItem?: string
   ): Promise<Item[]> {
     const itemsInCar: Item[] = [];
+    const items: Item[] = [];
     const inventorySize = await this.getItemsCount();
 
     for (let i = 0; i < inventorySize; i++) {
-      const btnAddItem = this._inventoryItems
-        .child(i)
-        .find('button.btn.btn_primary.btn_small.btn_inventory');
       const itemPrice = await getInnerTextNumberFromItem(
         this._inventoryItems.child(i),
         'div.inventory_item_price'
       );
       const itemName = await this._inventoryItems.child(i).find('div.inventory_item_name')
         .innerText;
+      const itemKeyName = itemName.toLowerCase().replace(/\s/g, '-');
 
       const item: Item = {
         name: itemName,
@@ -72,20 +97,20 @@ class InventoryPage {
         quantity: 1,
       };
 
-      await ctx.scroll(btnAddItem, 'center');
       if (addItems) {
-        if (!addSpecificItem) {
-          await ctx.click(btnAddItem);
+        if (addSpecificItem && itemName.localeCompare(addSpecificItem) === 0) {
+          await this.addItemToCart(ctx, i, itemKeyName);
           itemsInCar.push(item);
-        } else {
-          if (itemName.localeCompare(addSpecificItem) === 0) {
-            await ctx.click(btnAddItem);
-            itemsInCar.push(item);
-          }
         }
+        if (!addSpecificItem) {
+          await this.addItemToCart(ctx, i, itemKeyName);
+          itemsInCar.push(item);
+        }
+      } else {
+        items.push(item);
       }
     }
-    return itemsInCar;
+    return addItems ? itemsInCar : items;
   }
 
   /**

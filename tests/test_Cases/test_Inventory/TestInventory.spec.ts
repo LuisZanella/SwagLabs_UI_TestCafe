@@ -21,9 +21,7 @@ UserTestData.forEach((user: User) => {
     await Login.userLogIn(ctx, user.userName, user.password);
     await ctx
       .expect(getClientLocation())
-      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`, {
-        timeout: 10000,
-      });
+      .eql(`${process.env.ENV_URL}${ConstantData.inventoryPathURL}`, `UserName: ${user.userName}`);
     // Step 2
     await Inventory.userLogOut(ctx);
     await ctx.expect(getClientLocation()).eql(`${process.env.ENV_URL}${ConstantData.loginPathURL}`);

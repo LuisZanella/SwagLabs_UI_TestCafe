@@ -18,9 +18,7 @@
       "@pageModels/*": ["tests/pages_model/*"],
       "@config/*": ["config/*"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "include": ["./**/*.ts"],
   "exclude": [
